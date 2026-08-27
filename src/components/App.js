@@ -4,7 +4,7 @@ const fruits = ["apple", "banana", "cherry", "date", "elderberry", "fig"]
 
 const App = () => {
   const [search, setSearch] = useState("")
-  const [suggestions, setSuggestions] = useState([])
+  const [suggestions, setSuggestions] = useState(fruits)
 
   const handleChange = (e) => {
     const value = e.target.value
