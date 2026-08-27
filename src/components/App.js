@@ -1,11 +1,37 @@
+import React, { useState } from 'react'
 
-import React from "react";
-import './../styles/App.css';
+const fruits = ["apple", "banana", "cherry", "date", "elderberry", "fig"]
 
 const App = () => {
+  const [search, setSearch] = useState("")
+  const [suggestions, setSuggestions] = useState([])
+
+  const handleChange = (e) => {
+    const value = e.target.value
+    setSearch(value)
+
+    setTimeout(() => {
+      const filteredFruits = fruits.filter((fruit) =>
+        fruit.toLowerCase().includes(value.toLowerCase())
+      )
+
+      setSuggestions(filteredFruits)
+    }, 300)
+  }
+
   return (
-    <div>
-        {/* Do not remove the main div */}
+    <div id="main">
+      <input
+        type="text"
+        value={search}
+        onChange={handleChange}
+      />
+
+      <ul>
+        {suggestions.map((fruit) => (
+          <li key={fruit}>{fruit}</li>
+        ))}
+      </ul>
     </div>
   )
 }
